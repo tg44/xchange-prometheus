@@ -23,7 +23,7 @@ object Main extends App{
   val krakenMetrics = system.actorOf(XChangeMetricsActor.props(registry,XChangeMetricsActor.createKrakenFromConf(config)))
   val metrics = new MetricsApi(registry)
 
-  system.scheduler.schedule(15.seconds, 15.seconds, krakenMetrics, "")
+  system.scheduler.schedule(15.millis, 15.seconds, krakenMetrics, "")
 
   val routes = {
     pathPrefix("metrics") {
